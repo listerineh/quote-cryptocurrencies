@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Image = styled.img`
   display: block;
-  width: 160px;
+  width: 150px;
 `
 
 const Text = styled.p`
@@ -23,7 +23,6 @@ const Text = styled.p`
 
 const Price = styled.p`
   font-size: 24px;
-  text-transform: uppercase;
   span {
     font-weight: 700;
     color: #9497ff;
