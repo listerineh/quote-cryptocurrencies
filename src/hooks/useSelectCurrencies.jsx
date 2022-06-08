@@ -36,7 +36,7 @@ function useSelectCurrencies( label, options ) {
                 key={ option.id }
                 value={ option.id }
             >
-              { option.id } - { option.name }
+              { option.name }
             </option>
         ))}
           
