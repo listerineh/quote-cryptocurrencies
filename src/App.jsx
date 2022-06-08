@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import CryptoImage from './img/cryptos-img.png'
 
 const Container = styled.div`
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 90%;
   @media (min-width: 992px) {
@@ -29,7 +29,7 @@ const Heading = styled.h1`
   font-weight: 700;
   margin-top: 80px;
   margin-bottom: 50px;
-  font-size: 34px;
+  font-size: 36px;
 
   &::after {
     content: '';
