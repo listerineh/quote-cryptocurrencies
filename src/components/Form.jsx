@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import useSelectCurrencies from '../hooks/useSelectCurrencies'
 import styled from '@emotion/styled'
+import { currencies } from '../data/currencies'
 
 const InputSubmit = styled.input`
   background-color: #9497ff;
@@ -12,6 +14,7 @@ const InputSubmit = styled.input`
   font-size: 20px;
   border-radius: 5px;
   transition: background-color .3s ease;
+  margin-top: 30px;
 
   &:hover{
     background-color: #7a7dfe;
@@ -20,9 +23,12 @@ const InputSubmit = styled.input`
 `
 
 function Form() {
+
+  const [ currency, SelectCurrencies ] = useSelectCurrencies('Select your currency', currencies)
+
   return (
     <form>
-      
+      <SelectCurrencies />
 
       <InputSubmit 
         type="submit" 
