@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Form from './components/Form'
 import styled from '@emotion/styled'
 import CryptoImage from './img/cryptos-img.png'
 
@@ -49,6 +50,7 @@ function App() {
       />
       <div>
         <Heading>Quote cryptocurrencies instantly</Heading>
+        <Form />
       </div>
     </Container>
   )
