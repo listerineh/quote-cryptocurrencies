@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Form from './components/Form'
+import Result from './components/Result'
 import styled from '@emotion/styled'
 import CryptoImage from './img/cryptos-img.png'
 
@@ -70,6 +71,13 @@ function App() {
         <Form 
           setCurrencies={ setCurrencies }
         />
+
+        { quote.PRICE && 
+          <Result 
+            quote={ quote }
+          /> 
+        }
+        
       </div>
     </Container>
   )
