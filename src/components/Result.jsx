@@ -26,6 +26,7 @@ const Price = styled.p`
   text-transform: uppercase;
   span {
     font-weight: 700;
+    color: #9497ff;
   }
 `
 
