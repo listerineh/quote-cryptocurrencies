@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import useSelectCurrencies from '../hooks/useSelectCurrencies'
 import styled from '@emotion/styled'
 import { currencies } from '../data/currencies'
@@ -25,6 +25,17 @@ const InputSubmit = styled.input`
 function Form() {
 
   const [ currency, SelectCurrencies ] = useSelectCurrencies('Select your currency', currencies)
+
+  useEffect(() => {
+    const getQuery = async () => {
+      const URL = "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD"
+      const response = await fetch(URL)
+      const result = await response.json()
+
+      console.log(result.Data)
+    }
+    getQuery()
+  }, [])
 
   return (
     <form>
