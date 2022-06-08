@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import Form from './components/Form'
 import Result from './components/Result'
+import Spinner from './components/Spinner'
 import styled from '@emotion/styled'
 import CryptoImage from './img/cryptos-img.png'
 
 const Container = styled.div`
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
   width: 90%;
-  @media (min-width: 992px) {
+  @media (min-width: 900px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
@@ -16,7 +17,7 @@ const Container = styled.div`
 `
 
 const Image = styled.img`
-  max-width: 400px;
+  max-width: 420px;
   width: 80%;
   margin: 100px auto 0 auto;
   display: block;
@@ -33,7 +34,7 @@ const Heading = styled.h1`
 
   &::after {
     content: '';
-    width: 100px;
+    width: 150px;
     height: 6px;
     background-color: #66a2fe;
     display: block;
@@ -45,16 +46,20 @@ function App() {
 
   const [currencies, setCurrencies ] = useState({})
   const [quote, setQuote] = useState({})
+  const [spinner, setSpinner] = useState(false)
 
   useEffect(() => {
     if( Object.keys(currencies).length > 0 ){
       const quoteCryptocurrencies = async () => {
+        setSpinner(true)
+        setQuote({})
         const { currency, cryptoCurrency } = currencies
         const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptoCurrency}&tsyms=${currency}`
         const response = await fetch(URL)
         const result = await response.json()
 
         setQuote(result.DISPLAY[cryptoCurrency][currency])
+        setSpinner(false)
       }
       quoteCryptocurrencies()
     }
@@ -72,6 +77,7 @@ function App() {
           setCurrencies={ setCurrencies }
         />
 
+        { spinner && <Spinner /> }
         { quote.PRICE && 
           <Result 
             quote={ quote }
