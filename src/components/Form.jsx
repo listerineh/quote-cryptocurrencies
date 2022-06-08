@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import useSelectCurrencies from '../hooks/useSelectCurrencies'
+import Error from '../components/Error'
 import styled from '@emotion/styled'
 import { currencies } from '../data/currencies'
 
@@ -25,9 +26,10 @@ const InputSubmit = styled.input`
 function Form() {
 
   const [ cryptoCurrencies, setCryptoCurrencies ] = useState([])
+  const [error, setError] = useState(false)
 
   const [ currency, SelectCurrencies ] = useSelectCurrencies('Select your currency', currencies)
-  const [ cryptocurrency, SelectCryptoCurrencies ] = useSelectCurrencies('Select your cryptocurrency', cryptoCurrencies)
+  const [ cryptoCurrency, SelectCryptoCurrencies ] = useSelectCurrencies('Select your cryptocurrency', cryptoCurrencies)
 
   useEffect(() => {
     const getQuery = async () => {
@@ -48,16 +50,37 @@ function Form() {
     getQuery()
   }, [])
 
-  return (
-    <form>
-      <SelectCurrencies />
-      <SelectCryptoCurrencies />
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-      <InputSubmit 
-        type="submit" 
-        value="Quote" 
-      />
-    </form>
+    if( [currency, cryptoCurrency].includes('') ) {
+      setError(true)
+      setTimeout(() => {
+        setError(false)
+      }, 3000)
+      return
+    }
+
+
+
+  }
+
+  return (
+    <>
+      { error && <Error>Fill all the fields, please!</Error> }
+      
+      <form
+        onSubmit={ handleSubmit }
+      >
+        <SelectCurrencies />
+        <SelectCryptoCurrencies />
+
+        <InputSubmit 
+          type="submit" 
+          value="Quote" 
+        />
+      </form>
+    </>
   )
 }
 
